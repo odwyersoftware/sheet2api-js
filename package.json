@@ -1,0 +1,26 @@
+{
+  "name": "sheet2api-js",
+  "version": "0.1.0",
+  "description": "JavaScript Library for Google Sheets/Microsoft Excel Online through sheet2api.",
+  "main": "build/sheet2api-js.js",
+  "scripts": {
+    "build": "sh build.sh",
+    "test": "jest"
+  },
+  "keywords": [
+    "google",
+    "api-client",
+    "sheet2api",
+    "excel",
+    "spreadsheet",
+    "backend",
+    "api"
+  ],
+  "author": "sheet2api",
+  "license": "Apache2",
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "mock-xmlhttprequest": "^6.1.0",
+    "uglify-js": "^3.10.0"
+  }
+}
