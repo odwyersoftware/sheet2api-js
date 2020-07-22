@@ -1,4 +1,4 @@
-const { sheetUrl } = require('./_url')
+import sheetUrl from './_url'
 
 function write(slug_or_url, options, data) {
   return new Promise(function (resolve, reject) {
@@ -23,6 +23,4 @@ function write(slug_or_url, options, data) {
   });
 }
 
-module.exports = {
-  write
-}
+export default write;

@@ -1,5 +1,5 @@
-const { read } = require('./read');
-const { write } = require('./write');
+import read from './read';
+import write from './write';
 
 const Sheet2API = {
   read: function(){
@@ -11,6 +11,4 @@ const Sheet2API = {
   version: '1.0'
 }
 
-if (typeof module !== 'undefined') {
-  module.exports = Sheet2API;
-}
+export default Sheet2API;

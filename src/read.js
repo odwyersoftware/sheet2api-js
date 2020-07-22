@@ -1,4 +1,4 @@
-const { sheetUrl } = require('./_url')
+import sheetUrl from './_url'
 
 function read(slug_or_url, options) {
   return new Promise(function (resolve, reject) {
@@ -23,6 +23,4 @@ function read(slug_or_url, options) {
   });
 }
 
-module.exports = {
-  read
-}
+export default read;

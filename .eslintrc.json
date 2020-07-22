@@ -1,14 +1,14 @@
 {
   "env": {
     "browser": true,
-    "commonjs": true,
     "es2020": true,
     "node": true,
     "jest": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": 11
+    "ecmaVersion": 11,
+    "sourceType": "module"
   },
   "rules": {
     "prefer-const": "error",

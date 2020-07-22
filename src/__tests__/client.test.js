@@ -1,4 +1,5 @@
-const Sheet2API = require('../main');
+// Run npm run build before npm test
+const Sheet2API = require('../../build/sheet2api-js.min');
 const MockXMLHttpRequest = require('mock-xmlhttprequest');
 const url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
 
