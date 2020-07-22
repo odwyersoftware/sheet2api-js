@@ -75,4 +75,4 @@ Sheet2API.write(url, options, newRowData).then(function(result){
 </script>
 ```
 
-Something missing you'd like to see? Please create an issue.
+Something missing you would like to see? Please create an issue.
