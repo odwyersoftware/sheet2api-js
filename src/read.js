@@ -1,9 +1,9 @@
-const { sheetUrlGet } = require('./_url')
+const { sheetUrl } = require('./_url')
 
 function read(slug_or_url, options) {
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest();
-    const url = sheetUrlGet(slug_or_url, options);
+    const url = sheetUrl(slug_or_url, options);
     xhr.open('GET', url, true);
     xhr.onload = function () {
       if (this.status >= 200 && this.status < 300) {

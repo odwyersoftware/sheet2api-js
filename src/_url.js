@@ -1,6 +1,6 @@
 const baseUrl = 'https://sheet2api.com/v1/';
 
-const sheetUrlGet = function (slug_or_url, options) {
+const sheetUrl = function (slug_or_url, options) {
   return buildUrl(slug_or_url, options);
 };
 
@@ -12,10 +12,6 @@ const serialize = function (obj) {
     }
   return str.join('&');
 }
-
-const sheetUrlPost = function (slug_or_url, options) {
-  return buildUrl(slug_or_url, options);
-};
 
 const buildUrl = function (urlOrSlug, options) {
   let url = '';
@@ -40,6 +36,5 @@ const startsWith = function (string, searchString, position) {
 };
 
 module.exports = {
-  sheetUrlGet,
-  sheetUrlPost
+  sheetUrl
 };

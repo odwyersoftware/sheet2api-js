@@ -1,9 +1,9 @@
-const { sheetUrlPost } = require('./_url')
+const { sheetUrl } = require('./_url')
 
 function write(slug_or_url, options, data) {
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest();
-    const url = sheetUrlPost(slug_or_url, options);
+    const url = sheetUrl(slug_or_url, options);
     xhr.open('POST', url, true);
     xhr.onload = function () {
       if (this.status >= 200 && this.status < 300) {
