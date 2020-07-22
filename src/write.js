@@ -1,8 +1,10 @@
+const { sheetUrl } = require('./_url')
+
 function write(slug_or_url, options, data) {
   return new Promise(function (resolve, reject) {
-    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-    var url = sheetUrlPost(slug_or_url, options);
-    xhr.open("POST", url, true);
+    const xhr = new XMLHttpRequest();
+    const url = sheetUrl(slug_or_url, options);
+    xhr.open('POST', url, true);
     xhr.onload = function () {
       if (this.status >= 200 && this.status < 300) {
         resolve(JSON.parse(xhr.responseText));
@@ -19,4 +21,8 @@ function write(slug_or_url, options, data) {
     };
     xhr.send(JSON.stringify(data));
   });
+}
+
+module.exports = {
+  write
 }
