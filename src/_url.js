@@ -1,24 +1,24 @@
-var baseUrl = "https://sheet2api.com/v1/";
+const baseUrl = 'https://sheet2api.com/v1/';
 
-var sheetUrlGet = function (slug_or_url, options) {
+const sheetUrlGet = function (slug_or_url, options) {
   return buildUrl(slug_or_url, options);
 };
 
-var serialize = function (obj) {
-  var str = [];
-  for (var p in obj)
-    if (obj.hasOwnProperty(p)) {
-      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+const serialize = function (obj) {
+  const str = [];
+  for (const p in obj)
+    if (Object.prototype.hasOwnProperty.call(obj, p)) {
+      str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
     }
-  return str.join("&");
+  return str.join('&');
 }
 
-var sheetUrlPost = function (slug_or_url, options) {
+const sheetUrlPost = function (slug_or_url, options) {
   return buildUrl(slug_or_url, options);
 };
 
-var buildUrl = function (urlOrSlug, options) {
-  var url = '';
+const buildUrl = function (urlOrSlug, options) {
+  let url = '';
   if (startsWith(urlOrSlug, baseUrl)) {
     url += urlOrSlug;
   } else {
@@ -34,7 +34,12 @@ var buildUrl = function (urlOrSlug, options) {
   return url;
 };
 
-var startsWith = function (string, searchString, position) {
+const startsWith = function (string, searchString, position) {
   position = position || 0;
   return string.indexOf(searchString, position) === position;
+};
+
+module.exports = {
+  sheetUrlGet,
+  sheetUrlPost
 };

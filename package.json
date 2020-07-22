@@ -5,6 +5,7 @@
   "main": "build/sheet2api-js.js",
   "scripts": {
     "build": "sh build.sh",
+    "lint": "eslint ./",
     "test": "jest"
   },
   "keywords": [
@@ -19,6 +20,7 @@
   "author": "sheet2api",
   "license": "Apache2",
   "devDependencies": {
+    "eslint": "^7.5.0",
     "jest": "^26.1.0",
     "mock-xmlhttprequest": "^6.1.0",
     "uglify-js": "^3.10.0"

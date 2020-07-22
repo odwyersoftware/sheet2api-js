@@ -1,8 +1,10 @@
+const { sheetUrlGet } = require('./_url')
+
 function read(slug_or_url, options) {
   return new Promise(function (resolve, reject) {
-    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-    var url = sheetUrlGet(slug_or_url, options);
-    xhr.open("GET", url, true);
+    const xhr = new XMLHttpRequest();
+    const url = sheetUrlGet(slug_or_url, options);
+    xhr.open('GET', url, true);
     xhr.onload = function () {
       if (this.status >= 200 && this.status < 300) {
         resolve(JSON.parse(xhr.responseText));
@@ -19,4 +21,8 @@ function read(slug_or_url, options) {
     };
     xhr.send();
   });
+}
+
+module.exports = {
+  read
 }
