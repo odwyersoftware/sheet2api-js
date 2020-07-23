@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint src",
-    "test": "jest"
+    "test": "jest",
+    "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "keywords": [
     "google",

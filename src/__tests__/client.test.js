@@ -2,6 +2,8 @@
 const Sheet2API = require('../../build/sheet2api-js');
 const MockXMLHttpRequest = require('mock-xmlhttprequest');
 const url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
+const auth_user = 'bob'
+const auth_pass = 'superSecure';
 
 test('read', async () => {
   const expected = [{ 'Favourite Thing': 'Carrots1', 'Image': 'Bugs.png', 'Name': 'Bugs Bunny' }, { 'Favourite Thing': 'Chasing Rabbits', 'Image': 'Elmer.png', 'Name': 'Elmer Fudd' }, { 'Favourite Thing': 'Acting', 'Image': 'Porky.png', 'Name': 'Porky Pig' }]
@@ -16,6 +18,30 @@ test('read', async () => {
   const result = await Sheet2API.read(url);
 
   expect(result).toEqual(expected);
+  server.remove();
+});
+
+
+test('read, with auth', async () => {
+  const expected = [{ 'Favourite Thing': 'Carrots1', 'Image': 'Bugs.png', 'Name': 'Bugs Bunny' }, { 'Favourite Thing': 'Chasing Rabbits', 'Image': 'Elmer.png', 'Name': 'Elmer Fudd' }, { 'Favourite Thing': 'Acting', 'Image': 'Porky.png', 'Name': 'Porky Pig' }]
+  const server = MockXMLHttpRequest.newServer({
+    get: [url, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(`${auth_user}:${auth_pass}`),
+      },
+      body: JSON.stringify(expected),
+    }],
+  }).install();
+
+  const result = await Sheet2API.read(url, {auth: [auth_user, auth_pass]});
+
+  expect(result).toEqual(expected);
+  expect(server._requests[0].headers).toEqual({
+    'content-type': 'application/json',
+    'authorization': 'Basic ' + btoa(`${auth_user}:${auth_pass}`),
+  })
   server.remove();
 });
 
@@ -84,6 +110,27 @@ test('write a new row', async () => {
   const result = await Sheet2API.write(url, {}, new_row_data);
 
   expect(result).toEqual(new_row_data);
+  server.remove();
+});
+
+
+test('write a new row, with auth', async () => {
+  const new_row_data = { 'Favourite Thing': 'Carrots1', 'Image': 'Bugs.png', 'Name': 'Bugs Bunny' };
+  const server = MockXMLHttpRequest.newServer({
+    post: [url, {
+      status: 201,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(new_row_data),
+    }],
+  }).install();
+
+  const result = await Sheet2API.write(url, {auth: [auth_user, auth_pass]}, new_row_data);
+
+  expect(result).toEqual(new_row_data);
+  expect(server._requests[0].headers).toEqual({
+    'content-type': 'application/json; charset=UTF-8',
+    'authorization': 'Basic ' + btoa(`${auth_user}:${auth_pass}`),
+  })
   server.remove();
 });
 

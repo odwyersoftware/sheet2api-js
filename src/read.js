@@ -1,4 +1,4 @@
-import sheetUrl from './_url'
+import sheetUrl, {addAuth} from './_url'
 
 function read(slug_or_url, options) {
   return new Promise(function (resolve, reject) {
@@ -16,6 +16,7 @@ function read(slug_or_url, options) {
       }
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
+    addAuth(xhr, options);
     xhr.onerror = function (e) {
       reject(e);
     };

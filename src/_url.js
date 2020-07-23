@@ -30,6 +30,14 @@ const buildUrl = function (urlOrSlug, options) {
   return url;
 };
 
+export const addAuth = function (xhr, options) {
+  if(options && options.auth !== undefined) {
+    const auth_user = options.auth[0];
+    const auth_pass = options.auth[1];
+    xhr.setRequestHeader('Authorization', 'Basic ' + btoa(`${auth_user}:${auth_pass}`));
+  }
+}
+
 const startsWith = function (string, searchString, position) {
   position = position || 0;
   return string.indexOf(searchString, position) === position;
