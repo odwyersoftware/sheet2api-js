@@ -15,7 +15,7 @@ const serialize = function (obj) {
 
 const buildUrl = function (urlOrSlug, options) {
   let url = '';
-  if (startsWith(urlOrSlug, baseUrl)) {
+  if (urlOrSlug.startsWith(baseUrl)) {
     url += urlOrSlug;
   } else {
     url += (baseUrl + urlOrSlug);
@@ -28,11 +28,6 @@ const buildUrl = function (urlOrSlug, options) {
     url += '?' + serialize(options.query);
   }
   return url;
-};
-
-const startsWith = function (string, searchString, position) {
-  position = position || 0;
-  return string.indexOf(searchString, position) === position;
 };
 
 export default sheetUrl;
