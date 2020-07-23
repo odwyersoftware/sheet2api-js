@@ -1,10 +1,10 @@
 const baseUrl = 'https://sheet2api.com/v1/';
 
-const sheetUrl = function (slug_or_url, options) {
-  return buildUrl(slug_or_url, options);
-};
+function sheetUrl (slugOrUrl, options) {
+  return buildUrl(slugOrUrl, options);
+}
 
-const serialize = function (obj) {
+function serialize (obj) {
   const str = [];
   for (const p in obj)
     if (Object.prototype.hasOwnProperty.call(obj, p)) {
@@ -13,7 +13,7 @@ const serialize = function (obj) {
   return str.join('&');
 }
 
-const buildUrl = function (urlOrSlug, options) {
+function buildUrl (urlOrSlug, options) {
   let url = '';
   if (urlOrSlug.startsWith(baseUrl)) {
     url += urlOrSlug;
@@ -28,6 +28,6 @@ const buildUrl = function (urlOrSlug, options) {
     url += '?' + serialize(options.query);
   }
   return url;
-};
+}
 
 export default sheetUrl;

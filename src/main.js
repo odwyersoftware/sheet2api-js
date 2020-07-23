@@ -1,13 +1,8 @@
-import read from './read';
-import write from './write';
+import request from './request';
 
 const Sheet2API = {
-  read: function(){
-    return read.apply(null, arguments);
-  },
-  write: function(){
-    return write.apply(null, arguments);
-  },
+  read: request,
+  write: request,
   version: '1.0'
 }
 
