@@ -35,6 +35,4 @@ const startsWith = function (string, searchString, position) {
   return string.indexOf(searchString, position) === position;
 };
 
-module.exports = {
-  sheetUrl
-};
+export default sheetUrl;

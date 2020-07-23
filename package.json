@@ -1,10 +1,10 @@
 {
   "name": "sheet2api-js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "JavaScript Library for Google Sheets/Microsoft Excel Online through sheet2api.",
   "main": "build/sheet2api-js.js",
   "scripts": {
-    "build": "terser src/main.js -c -m -o build/sheet2api-js.js",
+    "build": "rollup -c",
     "lint": "eslint src",
     "test": "jest"
   },
@@ -23,6 +23,7 @@
     "eslint": "^7.5.0",
     "jest": "^26.1.0",
     "mock-xmlhttprequest": "^6.1.0",
-    "terser": "^4.8.0"
+    "rollup": "^2.22.2",
+    "rollup-plugin-terser": "^6.1.0"
   }
 }
