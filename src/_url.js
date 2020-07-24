@@ -1,10 +1,10 @@
 const baseUrl = 'https://sheet2api.com/v1/';
 
-function sheetUrl (slugOrUrl, options) {
+function sheetUrl(slugOrUrl, options) {
   return buildUrl(slugOrUrl, options);
 }
 
-function serialize (obj) {
+function serialize(obj) {
   const str = [];
   for (const p in obj)
     if (Object.prototype.hasOwnProperty.call(obj, p)) {
@@ -13,7 +13,7 @@ function serialize (obj) {
   return str.join('&');
 }
 
-function buildUrl (urlOrSlug, options) {
+function buildUrl(urlOrSlug, options) {
   let url = '';
   if (urlOrSlug.startsWith(baseUrl)) {
     url += urlOrSlug;

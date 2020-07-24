@@ -1,6 +1,6 @@
 import sheetUrl from './_url'
 
-function request (slugOrUrl, options, data) {
+function request(slugOrUrl, options, data) {
   const method = data ? 'POST' : 'GET';
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest();
