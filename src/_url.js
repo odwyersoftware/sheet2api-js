@@ -1,10 +1,6 @@
 const baseUrl = 'https://sheet2api.com/v1/';
 
-const sheetUrl = function (slug_or_url, options) {
-  return buildUrl(slug_or_url, options);
-};
-
-const serialize = function (obj) {
+function serialize(obj) {
   const str = [];
   for (const p in obj)
     if (Object.prototype.hasOwnProperty.call(obj, p)) {
@@ -13,9 +9,9 @@ const serialize = function (obj) {
   return str.join('&');
 }
 
-const buildUrl = function (urlOrSlug, options) {
+function sheetUrl(urlOrSlug, options) {
   let url = '';
-  if (startsWith(urlOrSlug, baseUrl)) {
+  if (urlOrSlug.startsWith(baseUrl)) {
     url += urlOrSlug;
   } else {
     url += (baseUrl + urlOrSlug);
@@ -28,7 +24,7 @@ const buildUrl = function (urlOrSlug, options) {
     url += '?' + serialize(options.query);
   }
   return url;
-};
+}
 
 export const addAuth = function (xhr, options) {
   if(options && options.auth !== undefined) {
@@ -37,10 +33,5 @@ export const addAuth = function (xhr, options) {
     xhr.setRequestHeader('Authorization', 'Basic ' + btoa(`${auth_user}:${auth_pass}`));
   }
 }
-
-const startsWith = function (string, searchString, position) {
-  position = position || 0;
-  return string.indexOf(searchString, position) === position;
-};
 
 export default sheetUrl;
