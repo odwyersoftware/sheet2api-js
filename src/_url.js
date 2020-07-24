@@ -1,9 +1,5 @@
 const baseUrl = 'https://sheet2api.com/v1/';
 
-function sheetUrl(slugOrUrl, options) {
-  return buildUrl(slugOrUrl, options);
-}
-
 function serialize(obj) {
   const str = [];
   for (const p in obj)
@@ -13,7 +9,7 @@ function serialize(obj) {
   return str.join('&');
 }
 
-function buildUrl(urlOrSlug, options) {
+function sheetUrl(urlOrSlug, options) {
   let url = '';
   if (urlOrSlug.startsWith(baseUrl)) {
     url += urlOrSlug;
