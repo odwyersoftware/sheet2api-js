@@ -24,7 +24,7 @@ Try it out with the codepen https://codepen.io/sheet2api/pen/MWKZrqW
 ```
 ```js
 // Or, Require import
-var Sheet2API = require('sheet2api-js');
+const Sheet2API = require('sheet2api-js');
 // Or, ES6 import
 import Sheet2API from 'sheet2api-js';
 ```
@@ -34,8 +34,8 @@ import Sheet2API from 'sheet2api-js';
 ```html
 <script src="//sheet2api.com/v1/api.js"></script>
 <script>
-var url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
-var options = {};
+const url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
+const options = {};
 Sheet2API.read(url, options).then(function(result){
   console.log(result);
 }, function(error){
@@ -49,8 +49,8 @@ Sheet2API.read(url, options).then(function(result){
 ```html
 <script src="//sheet2api.com/v1/api.js"></script>
 <script>
-var url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
-var options = {query: { 'Name': 'Bugs Bunny' }};
+const url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
+const options = {query: { 'Name': 'Bugs Bunny' }};
 Sheet2API.read(url, options).then(function(result){
   console.log(result);
 }, function(error){
@@ -64,10 +64,26 @@ Sheet2API.read(url, options).then(function(result){
 ```html
 <script src="//sheet2api.com/v1/api.js"></script>
 <script>
-var url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
-var newRowData = { "Favourite Thing": "Carrots", "Name": "Bugs Bunny" };
-var options = {};
+const url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
+const newRowData = { "Favourite Thing": "Carrots", "Name": "Bugs Bunny" };
+const options = {};
 Sheet2API.write(url, options, newRowData).then(function(result){
+  console.log(result);
+}, function(error){
+  console.log(error);
+});
+</script>
+```
+
+### Authentication
+
+If you have enabled Basic Authentication on your sheet2api API.
+
+```javascript
+const options = {
+  auth: ['username', 'password']
+};
+Sheet2API.read(url, options).then(function(result){
   console.log(result);
 }, function(error){
   console.log(error);

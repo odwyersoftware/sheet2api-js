@@ -1,4 +1,4 @@
-import sheetUrl from './_url'
+import sheetUrl, {addAuth} from './_url'
 
 function request(slugOrUrl, options, data) {
   const method = data ? 'POST' : 'GET';
@@ -17,6 +17,7 @@ function request(slugOrUrl, options, data) {
       }
     };
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    addAuth(xhr, options);
     xhr.onerror = function (e) {
       reject(e);
     };
