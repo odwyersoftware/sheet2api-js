@@ -1,10 +1,11 @@
 import sheetUrl from './_url'
 
-function read(slug_or_url, options) {
+function request(slugOrUrl, options, data) {
+  const method = data ? 'POST' : 'GET';
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest();
-    const url = sheetUrl(slug_or_url, options);
-    xhr.open('GET', url, true);
+    const url = sheetUrl(slugOrUrl, options);
+    xhr.open(method, url, true);
     xhr.onload = function () {
       if (this.status >= 200 && this.status < 300) {
         resolve(JSON.parse(xhr.responseText));
@@ -15,12 +16,16 @@ function read(slug_or_url, options) {
         });
       }
     };
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.onerror = function (e) {
       reject(e);
     };
-    xhr.send();
+    if (data) {
+      xhr.send(JSON.stringify(data));
+    } else {
+      xhr.send();
+    }
   });
 }
 
-export default read;
+export default request
