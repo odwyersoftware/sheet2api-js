@@ -143,3 +143,59 @@ test('write a new row, with sheet specified', async () => {
   expect(result).toEqual(new_row_data);
   server.remove();
 });
+
+
+test('update an existing row', async () => {
+  const update_row_data = { 'Favourite Thing': 'Carrots1', 'Image': 'Bugs.png', 'Name': 'Bugs Bunny' };
+  const server = MockXMLHttpRequest.newServer({
+    put: [url, {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(update_row_data),
+    }],
+  }).install();
+
+  const result = await Sheet2API.update(url, {}, update_row_data);
+
+  expect(result).toEqual(update_row_data);
+  server.remove();
+});
+
+
+test('update an existing row, with sheet specified', async () => {
+  const update_row_data = { 'Favourite Thing': 'Carrots1', 'Image': 'Bugs.png', 'Name': 'Bugs Bunny' };
+  const server = MockXMLHttpRequest.newServer({
+    put: [`${url}Sheet1/`, {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(update_row_data),
+    }],
+  }).install();
+
+  const result = await Sheet2API.update(url, { sheet: 'Sheet1' }, update_row_data);
+
+  expect(result).toEqual(update_row_data);
+  server.remove();
+});
+
+
+test('update an existing row, with auth', async () => {
+  const update_row_data = { 'Favourite Thing': 'Carrots1', 'Image': 'Bugs.png', 'Name': 'Bugs Bunny' };
+  const server = MockXMLHttpRequest.newServer({
+    put: [url, {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(update_row_data),
+    }],
+  }).install();
+
+  const result = await Sheet2API.update(url, {auth: [auth_user, auth_pass]}, update_row_data);
+
+  expect(result).toEqual(update_row_data);
+
+  expect(server._requests[0].headers).toEqual({
+    'content-type': 'application/json; charset=UTF-8',
+    'authorization': 'Basic ' + btoa(`${auth_user}:${auth_pass}`),
+  })
+  server.remove();
+});

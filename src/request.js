@@ -1,7 +1,16 @@
 import sheetUrl, {addAuth} from './_url'
 
-function request(slugOrUrl, options, data) {
-  const method = data ? 'POST' : 'GET';
+export function update(slugOrUrl, options, data) {
+  return request(slugOrUrl, options, data, 'PUT');
+}
+
+export function request(slugOrUrl, options, data, method_override = null) {
+  let method;
+  if(method_override == null) {
+    method = data ? 'POST' : 'GET';
+  } else {
+    method = method_override;
+  }
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest();
     const url = sheetUrl(slugOrUrl, options);
@@ -28,5 +37,3 @@ function request(slugOrUrl, options, data) {
     }
   });
 }
-
-export default request
