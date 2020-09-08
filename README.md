@@ -75,6 +75,22 @@ Sheet2API.write(url, options, newRowData).then(function(result){
 </script>
 ```
 
+### Update existing rows matching a search query
+
+```html
+<script src="//sheet2api.com/v1/api.js"></script>
+<script>
+const url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
+const updateWithData = { "Favourite Thing": "Beer", "Name": "Bugs Bunny" };
+const options = {query: { 'Name': 'Bugs Bunny' }};
+Sheet2API.update(url, options, updateWithData).then(function(result){
+  console.log(result);
+}, function(error){
+  console.log(error);
+});
+</script>
+```
+
 ### Authentication
 
 If you have enabled Basic Authentication on your sheet2api API.
