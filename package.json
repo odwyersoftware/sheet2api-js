@@ -1,6 +1,6 @@
 {
   "name": "sheet2api-js",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "JavaScript Library for Google Sheets/Microsoft Excel Online through sheet2api.",
   "main": "build/sheet2api-js.js",
   "scripts": {

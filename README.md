@@ -91,6 +91,24 @@ Sheet2API.update(url, options, updateWithData).then(function(result){
 </script>
 ```
 
+### Update partially, existing rows matching a search query
+
+Note, If you don’t include values for all columns (Name, Favourite Thing, Image) in the request body, then missing column values will not be updated, just the ones which were present in the request body.
+
+```html
+<script src="//sheet2api.com/v1/api.js"></script>
+<script>
+const url = 'https://sheet2api.com/v1/FgI6zV8qT121/characters/';
+const updateWithData = { "Name": "Bugs" };
+const options = {query: { 'Name': 'Bugs Bunny' }};
+Sheet2API.updatePartial(url, options, updateWithData).then(function(result){
+  console.log(result);
+}, function(error){
+  console.log(error);
+});
+</script>
+```
+
 ### Authentication
 
 If you have enabled Basic Authentication on your sheet2api API.

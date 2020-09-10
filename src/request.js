@@ -4,6 +4,10 @@ export function update(slugOrUrl, options, data) {
   return request(slugOrUrl, options, data, 'PUT');
 }
 
+export function updatePartial(slugOrUrl, options, data) {
+  return request(slugOrUrl, options, data, 'PUT');
+}
+
 export function request(slugOrUrl, options, data, method_override = null) {
   let method;
   if(method_override == null) {
