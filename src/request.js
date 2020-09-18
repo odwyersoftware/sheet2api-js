@@ -5,7 +5,7 @@ export function update(slugOrUrl, options, data) {
 }
 
 export function updatePartial(slugOrUrl, options, data) {
-  return request(slugOrUrl, options, data, 'PUT');
+  return request(slugOrUrl, options, data, 'PATCH');
 }
 
 export function request(slugOrUrl, options, data, method_override = null) {
